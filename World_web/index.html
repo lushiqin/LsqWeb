@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<title>首页</title>
+	</head>
+	<body>
+		<!--
+        	作者：909366413@qq.com
+        	时间：2016-07-26
+        	描述：顶部分类导航
+        -->
+		<div class="headerBar">
+			<div class="topBar">
+				<div class="comWidth">
+					<div class="leftArea">
+						<a href ="#" class="collection">收藏</a>
+						<span id="time">
+						</span>
+					</div>
+					<div class="rightArea">
+						<a href="#">登录</a>
+						<a href="#">注册</a>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+			"use strict";
+			window.onload=function(){
+				var sdd = setInterval(function(){time()},1000);
+				function time(){
+					var t = new Date();
+					$("#time").html(t.toLocaleString());
+				}
+			}
+			</script>
+			
+			<div class="logoBar">
+				<div class="comWidth">
+					<div class="logo fl">
+						<a href="#"><img src="img/mixmore.jpg" alt="摩客"/></a>
+					</div>
+					<div class="serach_box fl">
+						<input type="text" class="serach_text"/>
+						<input type="button" class="serach_btn fr" value="搜 索" />
+					</div>
+					<div class="shopCar fr">
+						<span class="shopText">购物车</span>
+						<span class="shopNum">0</span>
+					</div>
+				</div>
+			</div>
+			<!--
+            	作者：909366413@qq.com
+            	时间：2016-07-26
+            	描述：左侧分类导航
+            -->
+			<div class="navBox">
+				<div class="comWidth">
+					<div class="shopClass fl">
+						<h4>全部商品分类<i></i></h4>
+							<div class="shopClass_show">
+								<dl class="shopClass_item">
+									<dt><a href="#" class="b">手机</a>
+										<a href="#" class="b">手机</a>
+										<a href="#" class="b">手机</a>
+									</dt>
+									<dd><a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+									</dd>
+								</dl>
+								
+								<dl class="shopClass_item">
+									<dt><a href="#" class="b">手机</a>
+										<a href="#" class="b">手机</a>
+										<a href="#" class="b ">手机</a>
+									</dt>
+									<dd><a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+									</dd>
+								</dl>
+								
+								<dl class="shopClass_item">
+									<dt><a href="#" class="b">手机</a>
+										<a href="#" class="b">手机</a>
+										<a href="#" class="b ">手机</a>
+									</dt>
+									<dd><a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+									</dd>
+								</dl>
+								
+								<dl class="shopClass_item">
+									<dt><a href="#" class="b">手机</a>
+										<a href="#" class="b">手机</a>
+										<a href="#" class="b ">手机</a>
+									</dt>
+									<dd><a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+									</dd>
+								</dl>
+								
+								<dl class="shopClass_item ">
+									<dt><a href="#" class="b">手机</a>
+										<a href="#" class="b">手机</a>
+										<a href="#" class="b ">手机</a>
+									</dt>
+									<dd><a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+										<a href="#">华为</a>
+									</dd>
+								</dl>
+							</div>
+						<!--
+                        	作者：909366413@qq.com
+                        	时间：2016-07-26
+                        	描述：分类列表
+                        -->
+                                    <script type="text/javascript">
+						            	$(".shopClass_item").on("mouseover",function(){
+						            		$(".shopClass_list").addClass("show");
+						            		$(".shopClass_item").on("mouseout",function(){
+						            			$(".shopClass_list").removeClass("show");
+						            		});
+						            	});
+						            	
+						            	var nov = $(".shopClass_item .b");
+						            	for (var i= 0 ;i<nov.length;i++) {
+						            		$(nov[i]).on("mouseover",function(){
+						            		$(this).addClass("active");
+						            		$(this).on("mouseout",function(){
+						            			$(this).removeClass("active");
+						            		});
+						            	});
+						            	}
+						            </script>
+							<div class="shopClass_list hide">
+								<div class="shoplist_cont">
+									<dl class="shoplist_item">
+										<dt>电脑</dt>
+										<dd>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+										</dd>
+									</dl>
+									
+									<dl class="shoplist_item">
+										<dt>电脑</dt>
+										<dd>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+										</dd>
+									</dl>
+									
+									<dl class="shoplist_item">
+										<dt>电脑</dt>
+										<dd>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+										</dd>
+									</dl>
+									
+									<dl class="shoplist_item">
+										<dt>电脑</dt>
+										<dd>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+										</dd>
+									</dl>
+									
+									<dl class="shoplist_item">
+										<dt>电脑</dt>
+										<dd>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+										</dd>
+									</dl>
+									
+									<dl class="shoplist_item">
+										<dt>电脑</dt>
+										<dd>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+											<a href="#">苹果</a>
+										</dd>
+									</dl>
+									
+								<div class="shoplist_links">
+									<a href="#">文字文字</a>
+									<a href="#">文字文字</a>
+								</div>
+								</div>
+							</div>
+					</div>
+					<ul class="nav fl">
+						<li><a href="#" class="active">第一</a></li>
+						<li><a href="#">第二</a></li>
+						<li><a href="#">第三</a></li>
+						<li><a href="#">第四</a></li>
+						<li><a href="#">第五</a></li>
+						<li><a href="#">第六</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			var num1 = $(".nav a");
+        	for (var i = 1;i<num1.length;i++) {
+	        		$(num1[i]).on("mouseover",function(){
+	        			console.log(i);
+	        			$(this).addClass("active");
+	        			$(num1[0]).removeClass("active");
+	        			$(this).on("mouseout",function(){
+	        				$(this).removeClass("active");
+	        				$(num1[0]).addClass("active");
+	        			})
+	        		});
+	        	}
+		</script>
+		
+		
+		<!--
+        	作者：909366413@qq.com
+        	时间：2016-07-26
+        	描述：轮播图
+        -->
+		<div class="banner comWidth clearfix">
+			<div class="banner_bar banner_big">
+				<ul class="imgBox">
+					<li><a href="#"><img src="img/car.png" alt="banner1"/></a></li>
+					<li><a href="#"><img src="img/mixmore.jpg" alt="banner2"/></a></li>
+				</ul>
+				<div class="imgnum">
+					<a href="#" class="active"></a>
+					<a href="#"></a>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+        	var num = $(".banner_big .imgnum a");
+        	for (var i = 1;i<num.length;i++) {
+	        		$(num[i]).on("mouseover",function(){
+	        			$(this).addClass("active");
+	        			$(num[0]).removeClass("active");
+	        			$(".banner_big .imgBox").css("left","-810px");
+	        			$(this).on("mouseout",function(){
+	        				$(this).removeClass("active");
+	        				$(num[0]).addClass("active");
+	        				$(".banner_big .imgBox").css("left","0px");
+	        			})
+	        		});
+	        	}
+        </script>
+		
+		<!--
+        	作者：909366413@qq.com
+        	时间：2016-07-26
+        	描述：商品列表
+        -->
+		<div class="shoptit comWidth">
+			<span class="icon"></span><h4>平板电脑</h4><a href="#" class="more">更多&gt;&gt;</a>
+		</div>
+		
+		<div class="shoplist banner comWidth clearfix">
+			<div class="leftArea">
+				<div class="banner_bar banner_sm">
+					<ul class="imgBox">
+						<li><a href="#"><img src="img/car.png" alt="banner1"/></a></li>
+						<li><a href="#"><img src="img/mixmore.jpg" alt="banner2"/></a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="rightArea clearfix">
+				<div class="shoplist_top clearfix">
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+				</div>
+				
+				<div class="shoplist_sm clearfix">
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="shoptit comWidth">
+			<span class="icon"></span><h4>平板电脑</h4><a href="#" class="more">更多&gt;&gt;</a>
+		</div>
+		
+		<div class="shoplist banner comWidth clearfix">
+			<div class="leftArea">
+				<div class="banner_bar banner_sm">
+					<ul class="imgBox">
+						<li><a href="#"><img src="img/car.png" alt="banner1"/></a></li>
+						<li><a href="#"><img src="img/mixmore.jpg" alt="banner2"/></a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="rightArea clearfix">
+				<div class="shoplist_top clearfix">
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+				</div>
+				
+				<div class="shoplist_sm clearfix">
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="shoptit comWidth">
+			<span class="icon"></span><h4>平板电脑</h4><a href="#" class="more">更多&gt;&gt;</a>
+		</div>
+		
+		<div class="shoplist banner comWidth clearfix">
+			<div class="leftArea">
+				<div class="banner_bar banner_sm">
+					<ul class="imgBox">
+						<li><a href="#"><img src="img/car.png" alt="banner1"/></a></li>
+						<li><a href="#"><img src="img/mixmore.jpg" alt="banner2"/></a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="rightArea clearfix">
+				<div class="shoplist_top clearfix">
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+					
+					<div class="shop_item">
+						<div class="shop_img">
+							<a href="#"><img src="img/mixmore.jpg" alt="shop"/></a>
+						</div>
+						<h4>照相机</h4>
+						<p>2000</p>
+					</div>
+				</div>
+				
+				<div class="shoplist_sm clearfix">
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+					
+					<div class="shopitem_sm ">
+						<div class="shopitem_smimg">
+							<a href="#"><img src="img/mixmore.jpg"/></a>
+						</div>
+						
+						<div class="shopitem_text">
+							<p>&nbsp;&nbsp;火箭火箭火箭火箭火箭火箭火箭火箭</p>
+							<h4>149</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--
+        	作者：909366413@qq.com
+        	时间：2016-07-26
+        	描述：底部
+        -->
+        <div class="footer">
+        	<p>
+        		<i><a href="#">第一第一</a>&nbsp;|</i>
+        		<i><a href="#">第一第一</a>&nbsp;|</i>
+        		<i><a href="#">第一第一</a>&nbsp;|</i>
+        		<i><a href="#">第一第一</a>&nbsp;|</i>
+        		<i>欢迎来电：10086</i>
+        	</p>
+        	<p>466889778989987</p>
+        	<p><a href="#"><img src="img/mixmore.jpg"/></a></p>
+        </div>
+        
+        <script type="text/javascript">
+        </script>
+        
+        
+		<!--<script type="text/javascript"> 
+			function copyUrl2() 
+			{ 
+			var Url2=document.getElementById("biao1"); 
+			Url2.select(); // 选择对象 
+			document.execCommand("Copy"); // 执行浏览器复制命令 
+			alert("已复制好，可贴粘。"); 
+			} 
+		</script> 
+		<input type="text" id="biao1" value="1124dsgdsg" readonly="readonly" onclick="copyUrl2()"/>
+		
+		<script src="" type="text/javascript" charset="utf-8"></script>-->
+	</body>
+</html>

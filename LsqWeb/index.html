@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<style type="text/css">
+			ul li {
+				list-style-type: none;
+			}
+			
+			.banner {
+				width: 200px;
+				overflow: hidden;
+				position: relative;
+				top: 0px;
+				z-index: 1;
+			}
+			
+			.imgbox {
+				width: 400px;
+				position: relative;
+				left: 0px;
+			}
+			
+			.imgbox li {
+				float: left;
+			}
+			
+			img {
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="banner">
+			<ul class="imgbox">
+				<li><img src="img/13046836729.png" /></li>
+				<li><img src="img/13066665555.png" /></li>
+			</ul>
+		</div>
+
+		<h3>请选择图片文件：JPG/GIF</h3>
+		<form name="form0" id="form0">
+			<input type="file" name="file" id="imgUp" multiple="multiple" /><br>
+			<img src="" id="imgView">
+		</form>
+		<script src="js/ImgUpAndView.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+
+</html>

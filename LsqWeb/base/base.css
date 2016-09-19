@@ -1,0 +1,25 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+	color: whitesmoke;
+}
+
+a {
+	text-decoration: none;
+}
+img{
+	border-style: none;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
