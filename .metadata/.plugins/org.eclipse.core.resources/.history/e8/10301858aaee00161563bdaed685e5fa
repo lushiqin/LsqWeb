@@ -1,0 +1,59 @@
+package seleniumJava;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class newgs {
+	
+//	WebDriver driver = new FirefoxDriver();
+	WebDriver driver = new ChromeDriver();
+//	WebDriver driver = new EdgeDriver();
+	
+	@Before
+	public void before() throws InterruptedException{
+
+		driver.get("http://scrmdev.newgs.net/salehome");
+		driver.manage().window().maximize();
+		login();
+	}
+	
+	@After
+	public void after() throws InterruptedException{
+		Thread.sleep(10000);
+		driver.quit();
+	}
+	
+	
+	public void login() throws InterruptedException{
+		Thread.sleep(500);
+		WebElement username = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[1]/div/input"));
+		WebElement password = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[2]/div/input"));
+		username.sendKeys("sale1@sale1.com");
+		password.sendKeys("admin123");
+		WebElement submit = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[3]/button"));
+		submit.click();
+	}
+	
+	
+	@Test
+	public void createActivity(){
+		
+	}
+	
+	@Test
+	public void createClass(){
+		
+	}
+	
+	@Test
+	public void createCustomer(){
+		WebElement Customer = driver.findElement(By.xpath("//*[@id='navbar']/ul[1]/li[2]/a"));
+		Customer.click();
+		
+	}
+}

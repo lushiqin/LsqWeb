@@ -1,0 +1,9 @@
+package xgsHt;
+
+import sun.misc.BASE64Decoder;
+
+public class Test {
+	BASE64Decoder decoder = new BASE64Decoder();
+	
+	byte[] b = decoder.decodeBuffer("5a0fbd2c7361dc11b05cd08cf18dcfba");
+}

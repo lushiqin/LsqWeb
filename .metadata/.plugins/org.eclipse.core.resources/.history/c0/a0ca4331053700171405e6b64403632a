@@ -1,0 +1,27 @@
+package seleniumJava;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class htsltk {
+	
+	@Before
+	public void before(){
+		
+	}
+	
+	@After
+	public void after(){
+		
+	}
+	
+	public void login(){
+		
+	}
+	
+	@Test
+	public void test(){
+		
+	}
+}

@@ -1,0 +1,160 @@
+package seleniumJava;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class newgs {
+	
+//	WebDriver driver = new FirefoxDriver();
+	WebDriver driver = new ChromeDriver();
+//	WebDriver driver = new EdgeDriver();
+	
+	@Before
+	public void before() throws InterruptedException{
+
+		driver.get("http://scrmdev.newgs.net/login");
+		driver.manage().window().maximize();
+		login();
+	}
+	
+	@After
+	public void after() throws InterruptedException{
+		Thread.sleep(8000);
+		driver.quit();
+	}
+	
+	
+	public void login() throws InterruptedException{
+		Thread.sleep(500);
+		WebElement username = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[1]/div/input"));
+		WebElement password = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[2]/div/input"));
+		username.sendKeys("sale1@sale1.com");
+		password.sendKeys("admin123");
+		WebElement submit = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[3]/button"));
+		submit.click();
+	}
+	
+	/**
+	 * 工作台
+	 * @throws InterruptedException
+	 */
+//	@Test
+//	public void Workbench() throws InterruptedException{
+//		WebElement Workbench = driver.findElement(By.xpath("//*[@id='navbar']/ul[1]/li[1]/a"));
+//		Workbench.click();
+//		Thread.sleep(1000);
+//	}
+	
+	/**
+	 * 客戶 管理
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void Customer() throws InterruptedException{
+		WebElement Customer = driver.findElement(By.xpath("//*[@id='navbar']/ul[1]/li[2]/a"));
+		Customer.click();
+		Thread.sleep(1000);
+		WebElement createCustomer = driver.findElement(By.xpath("//*[@id='page-wrapper']/div[2]/div/div/div/div/div[1]/div[2]/a"));
+		createCustomer.click();
+
+		customerSend();
+	}
+	
+	
+	/**
+	 * 活动管理
+	 * @throws InterruptedException
+	 */
+//	@Test
+//	public void Activity() throws InterruptedException{
+//		WebElement Activity = driver.findElement(By.xpath("//*[@id='navbar']/ul[1]/li[4]/a"));
+//		Activity.click();
+//		Thread.sleep(1000);
+//	}
+//	
+	
+	/**
+	 * 班级管理
+	 * @throws InterruptedException
+	 */
+//	@Test
+//	public void Class() throws InterruptedException{
+//		WebElement Class = driver.findElement(By.xpath("//*[@id='navbar']/ul[1]/li[3]/a"));
+//		Class.click();
+//		Thread.sleep(1000);
+//	}
+
+	
+	/**
+	 * 添加客户页面
+	 * @throws InterruptedException
+	 */
+	public void customerSend() throws InterruptedException{
+		
+		WebElement customerNice = driver.findElement(By.xpath("//*[@id='signupForm']/div[1]/div[1]/input"));
+		WebElement customerPhone = driver.findElement(By.xpath("//*[@id='signupForm']/div[1]/div[2]/input[1]"));
+		WebElement customerName = driver.findElement(By.xpath("//*[@id='signupForm']/div[2]/div[1]/input"));
+		WebElement customerId = driver.findElement(By.xpath("//*[@id='id_no']"));
+		WebElement customerSex = driver.findElement(By.xpath("//*[@id='sex']"));
+		WebElement customerAge = driver.findElement(By.xpath("//*[@id='age']"));
+		WebElement customerEmail = driver.findElement(By.xpath("//*[@id='signupForm']/div[4]/div[1]/input"));
+		WebElement customerQQ = driver.findElement(By.xpath("//*[@id='qq']"));
+		WebElement customerWechat = driver.findElement(By.xpath("//*[@id='wechat']"));
+		WebElement customerCulture = driver.findElement(By.xpath("//*[@id='education']"));
+		WebElement customerRegion = driver.findElement(By.xpath("//*[@id='favorite_block']"));
+		WebElement customerPosition = driver.findElement(By.xpath("//*[@id='favorite_job']"));
+		WebElement customerIndustry = driver.findElement(By.xpath("//*[@id='vocation']"));
+		WebElement customerAddress = driver.findElement(By.xpath("//*[@id='address']"));
+		WebElement customerFieldadd = driver.findElement(By.xpath("//*[@id='signupForm']/div[10]/div/button[1]"));
+		WebElement customerLabeladd = driver.findElement(By.xpath("//*[@id='signupForm']/div[11]/div/button[1]"));
+		WebElement customerSubmit = driver.findElement(By.xpath("//*[@id='signupForm']/div[12]/input"));
+		
+		customerNice.sendKeys("1");
+		customerPhone.sendKeys("2");
+		customerName.sendKeys("3");
+		customerId.sendKeys("14");
+		customerSex.sendKeys("4");
+		customerAge.sendKeys("5");
+		customerEmail.sendKeys("6");
+		customerQQ.sendKeys("7");
+		customerWechat.sendKeys("8");
+		customerCulture.sendKeys("9");
+		customerRegion.sendKeys("10");
+		customerPosition.sendKeys("11");
+		customerIndustry.sendKeys("12");
+		customerAddress.sendKeys("13");
+		
+		
+		customerFieldadd.click();
+		Thread.sleep(1000);
+		WebElement coustomerField = driver.findElement(By.xpath("//*[@id='field']/div/div/div[2]/div/input[1]"));
+		WebElement coustomerField_val = driver.findElement(By.xpath("//*[@id='field']/div/div/div[2]/div/input[2]"));
+		WebElement coustomerField_sub = driver.findElement(By.xpath("//*[@id='addField']"));
+		coustomerField.sendKeys("123");
+		coustomerField_val.sendKeys("456");
+		coustomerField_sub.click();
+		
+		
+		customerLabeladd.click();
+		Thread.sleep(1000);
+		WebElement coustomerLabel_val = driver.findElement(By.xpath("//*[@id='tag']/div/div/div[2]/div/input"));
+		WebElement coustmoerLaber_sub = driver.findElement(By.xpath("//*[@id='addTag']"));
+		coustomerLabel_val.sendKeys("789");
+		coustmoerLaber_sub.click();
+		
+		customerSubmit.click();
+		
+	}
+
+
+
+
+
+
+
+}

@@ -1,0 +1,32 @@
+package seleniumJava;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class htsltk {
+	WebDriver driver = new ChromeDriver();
+	
+	
+	@Before
+	public void before(){
+		driver.manage().window().maximize();
+		driver.get("http://examtest.newgs.net/index.php/Admin/Index/mainindex");
+	}
+	
+	@After
+	public void after(){
+		
+	}
+	
+	public void login(){
+		
+	}
+	
+	@Test
+	public void test(){
+		
+	}
+}

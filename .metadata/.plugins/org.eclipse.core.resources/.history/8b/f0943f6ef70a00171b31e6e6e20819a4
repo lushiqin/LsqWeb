@@ -1,0 +1,165 @@
+package seleniumJava;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GKZX {
+	WebDriver driver;
+	SimpleDateFormat df1 = new SimpleDateFormat("MMddHHmmss");
+	String time = df1.format(new Date());
+	SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+	String date = df2.format(new Date());
+	SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	String date1 = df3.format(new Date());
+	SimpleDateFormat df4 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	String date2 = df4.format(new Date());
+	Random random = new Random();
+	
+	@Before
+	public void before() throws InterruptedException{
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();;
+		driver.get("http://examtest.newgs.net/gkwap.php/GoogkerApi/WapGongker/login");
+		login();
+	}
+	
+	@After
+	public void after() throws InterruptedException{
+		Thread.sleep(8000);
+		driver.quit();
+	}
+	public void login() throws InterruptedException{
+		WebElement 登陆账号 = driver.findElement(By.cssSelector("#mobile"));
+		WebElement 登陆密码 = driver.findElement(By.cssSelector("#pass"));
+		WebElement 确认登陆 = driver.findElement(By.cssSelector("#login > div > div.fill_con.center-block > a"));
+		登陆账号.clear();
+		登陆账号.sendKeys("13457718147");
+		登陆密码.clear();
+		登陆密码.sendKeys("123456");
+		确认登陆.click();
+		Thread.sleep(2000);
+	}
+	
+	
+	@Test
+	public void 批改任务() throws InterruptedException{
+		WebElement 获取批改状态 = driver.findElement(By.xpath("//*[@id='main']/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[4]"));
+		switch (获取批改状态.getText()) {
+		case "待接单":
+			WebElement 接单 = driver.findElement(By.xpath("//*[@id='main']/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[5]/a"));
+			接单.click();
+			WebElement 接受任务 = driver.findElement(By.cssSelector("#main > table > tbody > tr > td.col-md-10 > div > div > div.btn_div > button.btn.btn-info.btn_accept_task"));
+			接受任务.click();
+			Thread.sleep(3000);
+			WebElement 确认接受 = driver.findElement(By.cssSelector("body > div.modal.fade.my_modal.in > div > div > div.modal-body > button.btn.btn-danger.do_accept_task"));
+			确认接受.click();
+			批改内容();
+			break;
+		case "诊断题目中":
+			WebElement 批改 = driver.findElement(By.xpath("//*[@id='main']/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[5]/a"));
+			批改.click();
+			批改内容();
+			break;
+		default:
+			System.out.println("不处理"+获取批改状态.getText());
+			break;
+		}
+	}
+	
+	
+	/**
+	 * 题目批改
+	 */
+	public void 批改内容() throws InterruptedException{
+		/**
+		 * 判断是不是题目
+		 */
+		List<WebElement> 判断是否题目 = driver.findElements(By.xpath("//*[@id='main']/table/tbody/tr/td[1]/div[2]/div[3]/li"));
+		for (int i = 0; i < 判断是否题目.size(); i++) {
+			if (判断是否题目.get(i).getAttribute("class").startsWith("to_main_page")) {
+				System.out.print("是题目~");
+				/**
+				 * 查看题目信息
+				 */
+				try {
+					System.out.println(判断是否题目.get(i).getText());
+					判断是否题目.get(i).click();
+					driver.switchTo().alert().accept();
+					Thread.sleep(3000);
+
+					WebElement 保存题目 = driver.findElement(By.xpath("//*[@id='edit_subject']/div[1]/button[3]"));
+					保存题目.click();
+					Thread.sleep(3000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			} else {
+				System.out.print("不是题目~");
+				System.out.println(判断是否题目.get(i).getText());
+			}
+		}
+	}
+	
+	
+	/**
+	public void 批改内容() throws InterruptedException{
+		Thread.sleep(3000);
+		WebElement 任务2id = driver.findElement(By.cssSelector("#main > table > tbody > tr > td.col-md-2 > div.left_nav_correct.left_nav.col-md-2 > div.c_detail > p:nth-child(4)"));
+		System.out.println(任务2id.getText());
+		WebElement 批改类型 = driver.findElement(By.cssSelector("#main > table > tbody > tr > td.col-md-2 > div.left_nav_correct.left_nav.col-md-2 > div.c_detail > p:nth-child(1)"));
+		if (批改类型.getText().startsWith("精细批改"))  System.out.println("精细批改不进行批改");
+		List<WebElement> 题目数量 = driver.findElements(By.xpath("//*[@id='main']/table/tbody/tr/td[1]/div[2]/div[3]/li"));
+		for (int i = 0; i < 题目数量.size(); i++) {
+			//判断是不是题目
+			if (题目数量.get(i).getAttribute("class").startsWith("to_main_page")) {
+				//题目内容
+				System.out.println(题目数量.get(i).getText());
+				try {
+					题目数量.get(i).click();
+					driver.switchTo().alert().accept();
+					Thread.sleep(3000);
+					List<WebElement> 要点数量 = driver.findElements(By.cssSelector("#exam_corr_from > div"));
+					//要点数量
+					for (int j = 0; j < 要点数量.size(); j++) {
+						//题目内容
+						if (要点数量.get(j).getAttribute("class").startsWith("subject_title")) {
+							System.out.print("题目:"+要点数量.get(j).getText());
+						}else {
+							//要点信息
+							WebElement 要点内容 = 要点数量.get(j).findElement(By.tagName("h5"));
+							System.out.print("要点:"+要点内容.getText());
+							List<WebElement> 要点数量2 = 要点数量.get(j).findElements(By.tagName("div"));
+							for (int k = 0; k < 要点数量2.size(); k++) {
+								List<WebElement> 组合数量 = 要点数量2.get(k).findElements(By.className("each_ability_block"));
+							}
+							
+							
+						}
+						System.out.println();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				System.out.println();
+			}else {
+				System.out.println("已经不是题目了");
+			}
+		}
+	}
+	**/
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;seleniumJava&apos;&#x0D;&#x0A;- Original project: &apos;seleniumJava&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     libs&#x0D;&#x0A;     selenium-java-2.53.0-srcs.jar&#x0D;&#x0A;     selenium-java-2.53.0.jar" description="Delete elements" element1="libs" element2="selenium-java-2.53.0-srcs.jar" element3="selenium-java-2.53.0.jar" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1477638138237" subPackages="false" version="1.0"/>
+</session>

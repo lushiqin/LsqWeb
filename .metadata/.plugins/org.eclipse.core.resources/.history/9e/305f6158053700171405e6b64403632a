@@ -1,0 +1,43 @@
+package seleniumJava;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class htsltk {
+	WebDriver driver = new ChromeDriver();
+	
+	
+	@Before
+	public void before() throws Exception{
+		driver.manage().window().maximize();
+		driver.get("http://examtest.newgs.net/index.php/Admin/Index/mainindex");
+		login();
+	}
+	
+	@After
+	public void after(){
+		
+	}
+	
+	public void login() throws Exception{
+		WebElement username = driver.findElement(By.id("username"));
+		WebElement password = driver.findElement(By.id("password"));
+		WebElement vcode = driver.findElement(By.id("vcode"));
+		WebElement submit = driver.findElement(By.id("submit"));
+		username.sendKeys("ksadmin");
+		password.sendKeys("ksadmin123");
+		vcode.sendKeys("1233");
+		submit.click();
+		Thread.sleep(1000);
+	}
+	
+	@Test
+	public void test(){
+		
+	}
+}

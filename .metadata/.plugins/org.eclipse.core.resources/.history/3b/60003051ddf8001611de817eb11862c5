@@ -1,0 +1,55 @@
+package seleniumJava;
+
+import java.util.List;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Test {
+	
+	private static WebDriver driver;
+
+	@BeforeClass
+	public static void before(){
+		login();
+	}
+	
+	@AfterClass
+	public static void after(){
+		driver.quit();
+	}
+	
+	
+	public static void login(){
+//		WebDriver driver = new FirefoxDriver();
+		driver = new ChromeDriver();
+//		WebDriver driver = new EdgeDriver();
+		driver.get("http://examtest.newgs.net/index.php/Admin/Login/index");
+		driver.manage().window().maximize();
+		WebElement username = driver.findElement(By.id("username"));
+		WebElement password = driver.findElement(By.id("password"));
+		WebElement vcode = driver.findElement(By.id("vcode"));
+		WebElement submit = driver.findElement(By.id("submit"));
+		username.sendKeys("ksadmin");
+		password.sendKeys("ksadmin123");
+		vcode.sendKeys("1233");
+		submit.click();
+	}
+	
+	
+	@org.junit.Test	
+	public  void test1(){
+		List<WebElement> nav = driver.findElements(By.cssSelector("#side-menu"));
+		for (int i = 0; i < nav.size(); i++) {
+			String navTag = nav.get(i).getText();
+		}
+	}
+	
+} 

@@ -1,0 +1,57 @@
+package seleniumJava;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class 学员中心 {
+	WebDriver driver;
+	
+	@Before
+	public void before() throws Exception{
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("http://examtest.newgs.net/index.php/Ewap/StudIndex/login");
+		login();
+		Thread.sleep(2000);
+	}
+	@After
+	public void after(){
+		driver.quit();
+	}
+	
+	public void login(){
+		WebElement 账号 = driver.findElement(By.xpath("//*[@id='login']/div[1]/div[2]/input"));
+		WebElement 密码 = driver.findElement(By.xpath("//*[@id='login']/div[2]/div[2]/input"));
+		账号.clear();
+		密码.clear();
+		账号.sendKeys("15012931651");
+		密码.sendKeys("测试");
+		WebElement 登陆 = driver.findElement(By.xpath("//*[@id='login']/div[3]/button"));
+		登陆.click();
+	}
+	
+	@Test
+	public void test() throws Exception{
+		System.out.println();
+		WebElement 进入套餐列表 = driver.findElement(By.xpath("//*[@id='stud_module']/div/div[1]/a"));
+		进入套餐列表.click();
+		Thread.sleep(1000);
+		WebElement 选择套餐 = driver.findElement(By.xpath("//*[@id='order_list']/div/div[2]/a[2]/div"));
+		选择套餐.click();
+		//选择考试类型
+		try {
+			WebElement 考试类型 = driver.findElement(By.xpath("//*[@id='accordion']/div[2]/label[1]"));
+			考试类型.click();
+			Thread.sleep(1000);
+			WebElement 确认选择 = driver.findElement(By.id("confirm_yes"));
+			确认选择.click();
+		} catch (Exception e) {
+			System.out.println("失败");
+		}
+	}
+}

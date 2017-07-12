@@ -1,0 +1,162 @@
+package seleniumJava;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GKZX {
+	WebDriver driver;
+	SimpleDateFormat df1 = new SimpleDateFormat("MMddHHmmss");
+	String time = df1.format(new Date());
+	SimpleDateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+	String date = df2.format(new Date());
+	SimpleDateFormat df3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	String date1 = df3.format(new Date());
+	SimpleDateFormat df4 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	String date2 = df4.format(new Date());
+	Random random = new Random();
+	
+	@Before
+	public void before() throws InterruptedException{
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();;
+		driver.get("http://examtest.newgs.net/gkwap.php/GoogkerApi/WapGongker/login");
+		login();
+	}
+	
+	@After
+	public void after() throws InterruptedException{
+		Thread.sleep(8000);
+		driver.quit();
+	}
+	public void login() throws InterruptedException{
+		WebElement 登陆账号 = driver.findElement(By.cssSelector("#mobile"));
+		WebElement 登陆密码 = driver.findElement(By.cssSelector("#pass"));
+		WebElement 确认登陆 = driver.findElement(By.cssSelector("#login > div > div.fill_con.center-block > a"));
+		登陆账号.clear();
+		登陆账号.sendKeys("13457718147");
+		登陆密码.clear();
+		登陆密码.sendKeys("123456");
+		确认登陆.click();
+		Thread.sleep(2000);
+	}
+	
+	
+	@Test
+	public void 批改任务() throws InterruptedException{
+		WebElement 获取批改状态 = driver.findElement(By.xpath("//*[@id='main']/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[4]"));
+		switch (获取批改状态.getText()) {
+		case "待接单":
+			WebElement 接单 = driver.findElement(By.xpath("//*[@id='main']/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[5]/a"));
+			接单.click();
+			WebElement 接受任务 = driver.findElement(By.cssSelector("#main > table > tbody > tr > td.col-md-10 > div > div > div.btn_div > button.btn.btn-info.btn_accept_task"));
+			接受任务.click();
+			Thread.sleep(3000);
+			WebElement 确认接受 = driver.findElement(By.cssSelector("body > div.modal.fade.my_modal.in > div > div > div.modal-body > button.btn.btn-danger.do_accept_task"));
+			确认接受.click();
+			批改内容();
+			break;
+		case "诊断题目中":
+			WebElement 批改 = driver.findElement(By.xpath("//*[@id='main']/table/tbody/tr/td[2]/div/div/table/tbody/tr[2]/td[5]/a"));
+			批改.click();
+			批改内容();
+			break;
+		default:
+			System.out.println("不处理"+获取批改状态.getText());
+			break;
+		}
+	}
+	
+	
+	/**
+	 * 题目批改
+	 */
+	public void 批改内容() throws InterruptedException{
+		/**
+		 * 判断是不是题目
+		 */
+		List<WebElement> 判断是否题目 = driver.findElements(By.xpath("//*[@id='main']/table/tbody/tr/td[1]/div[2]/div[3]/li"));
+		for (int i = 0; i < 判断是否题目.size(); i++) {
+			if (判断是否题目.get(i).getAttribute("class").startsWith("to_main_page")) {
+				System.out.print("是题目~");
+				/**
+				 * 查看题目信息
+				 */
+				try {
+					System.out.println(判断是否题目.get(i).getText());
+					判断是否题目.get(i).click();
+					try {
+						driver.switchTo().alert().accept();
+					} catch (Exception e) {
+					}
+					
+					Thread.sleep(3000);
+					
+					WebElement 题目容器 = driver.findElement(By.xpath("//*[@id='exam_corr_from']"));
+					WebElement 题目内容 = 题目容器.findElement(By.xpath("//*[@id='exam_corr_from']/div[1]"));
+					System.out.println(题目内容.getText());
+//					List<WebElement> 要点数量 = 题目容器.findElements(By.xpath("//*[@id='exam_corr_from']/div[2]/div"));
+//					for (int j = 0; j < 要点数量.size(); j++) {
+//						List<WebElement> 要点内容 = 要点数量.get(j).findElements(By.tagName("p"));
+//						System.out.println(要点内容.get(0).getText());
+//						List<WebElement> 组合数量 = 要点数量.get(j).findElements(By.tagName("div"));
+//						for (int k = 0; k < 组合数量.size(); k++) {
+//							/**
+//							 * 判断是否是组合
+//							 */
+//							if (组合数量.get(k).getAttribute("class").startsWith("each_ability_block")) {
+//								System.out.println("是组合");
+//								WebElement 诊断选项 = 组合数量.get(k).findElement(By.tagName("div"));
+//								List<WebElement> 诊断选项数量 = 诊断选项.findElements(By.tagName("div"));
+//								for (int l = 0; l < 诊断选项数量.size(); l++) {
+//									List<WebElement> 设置选项 = 诊断选项数量.get(l).findElements(By.tagName("div"));
+//									WebElement 考试第几条 = 设置选项.get(0).findElement(By.tagName("input"));
+//									考试第几条.clear();
+//									考试第几条.sendKeys("123");
+//									WebElement 选择选项 = 设置选项.get(1).findElement(By.tagName("div"));
+//									选择选项.click();
+//									Thread.sleep(2000);
+//									WebElement dd =  设置选项.get(1).findElement(By.tagName("table"));
+//									WebElement cc = dd.findElement(By.tagName("tbody"));
+//									WebElement ee = cc.findElement(By.tagName("tr"));
+//									List<WebElement> ff = ee.findElements(By.tagName("td"));
+//									WebElement gg = ff.get(0).findElement(By.tagName("div"));
+//									List<WebElement> hh = gg.findElements(By.tagName("a"));
+//									hh.get(0).click();
+//									WebElement jj = ff.get(1).findElement(By.tagName("button"));
+//									jj.click();
+//									Thread.sleep(2000);
+//								}
+//								
+//							} else {
+//								System.out.println("不是组合");
+//							}
+//						}
+//					}
+					WebElement 保存题目 = driver.findElement(By.xpath("//*[@id='edit_subject']/div[1]/button[3]"));
+					保存题目.click();
+					Thread.sleep(5000);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			} else {
+				System.out.print("不是题目~");
+				System.out.println(判断是否题目.get(i).getText());
+			}
+		}
+	}
+
+}

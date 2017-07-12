@@ -1,0 +1,59 @@
+package com.lsq.app;
+
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import io.appium.java_client.android.AndroidDriver;
+
+public class lsqApp {
+	private AndroidDriver<WebElement> driver;
+
+	@Before
+	public void setUp() throws Exception {
+		
+//		File classpathRoot = new File(System.getProperty("user.dir"));
+//		File appDir = new File(classpathRoot, "apps");
+//		File app = new File(appDir, "newgs.apk");
+		File app = new File("C:/Lsq/appium/ContactManager.apk");
+		
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
+
+		capabilities.setCapability("device", "Android");
+		capabilities.setCapability("deviceName", "NVDAYLVSMJLRT85P");
+
+		capabilities.setCapability("platformName", "Android");
+		capabilities.setCapability("platformVersion", "23");
+
+		capabilities.setCapability("app", app.getAbsolutePath());
+		capabilities.setCapability("appPackage", "com.naodong.xgs");
+		capabilities.setCapability("appActivity", "com.naodong.xgs.presentation.ui.LaunchActivity");
+		capabilities.setCapability("appWaitActivity", " com.naodong.xgs.presentation.ui.visitor.VisitorMainActivity");
+
+		
+		capabilities.setCapability("sessionOverride", true); // 每次启动时覆盖session，否则第二次后运行会报错不能新建session
+		capabilities.setCapability("unicodeKeyboard", true); // 设置键盘
+		capabilities.setCapability("resetKeyboard", false); // 设置默认键盘为appium的键盘
+		
+		driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+	}
+
+	@Test
+	public void addContact() {
+		System.out.println("success");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		driver.quit();
+	}
+}

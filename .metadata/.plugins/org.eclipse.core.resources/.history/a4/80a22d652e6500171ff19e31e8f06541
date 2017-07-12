@@ -1,0 +1,54 @@
+package xgsHt;
+
+import org.junit.After;
+import org.junit.Before;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.*;
+
+public class Htai {
+	WebDriver driver = new ChromeDriver();
+	
+	@Before
+	public void before(String url) throws Exception{
+		driver.manage().window().maximize();
+		driver.get("http://examtest.newgs.net/index.php/Admin/Login/index");
+		Thread.sleep(1000);
+		WebElement username = driver.findElement(By.id("username"));
+		username.clear();
+		username.sendKeys("xgstest");
+		WebElement userpass = driver.findElement(By.id("password"));
+		userpass.clear();
+		userpass.sendKeys("123456");
+		WebElement vcode = driver.findElement(By.id("vcode"));
+		vcode.sendKeys("123");
+		Thread.sleep(1000);
+		WebElement submit = driver.findElement(By.id("submit"));
+		submit.click();
+		Thread.sleep(2000);
+	}
+	@After
+	public void after(){
+		driver.close();
+	}
+	@Test
+	public void Test() throws Exception{
+		Tcan();
+	}
+	
+	
+	/**
+	 * 套餐
+	 * @throws Exception 
+	 */
+	public void Tcan() throws Exception{
+		WebElement meun = driver.findElement(By.xpath("//*[@id='side-menu']/li[4]/a"));
+		meun.click();
+		Thread.sleep(200);
+		WebElement tcan = driver.findElement(By.xpath("//*[@id='side-menu']/li[4]/ul/li[1]/a"));
+		tcan.click();
+		
+	}
+}

@@ -1,0 +1,20 @@
+package xgsHt;
+
+import java.io.IOException;
+
+import sun.misc.BASE64Decoder;
+
+public class Test {
+	
+	public void main(){
+		BASE64Decoder decoder = new BASE64Decoder();
+		
+		try {
+			byte[] b = decoder.decodeBuffer("5a0fbd2c7361dc11b05cd08cf18dcfba");
+			System.out.println(b.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,272 @@
+package seleniumJava;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class sltk {
+	WebDriver driver = new ChromeDriver();
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	String time1 = df.format(new Date());
+	Random random = new Random();
+
+	@Before
+	public void before() throws Exception{
+		driver.manage().window().maximize();
+		driver.get("http://sltktest.newgs.net/admin/login");
+		login();
+	}
+	
+	@Test
+	public void test() throws Exception{
+		System.out.println("begin");
+		dtjx();
+	}
+	
+	@After
+	public void after(){
+		driver.close();
+	}
+	
+	public void login() throws Exception{
+		WebElement name = driver.findElement(By.xpath(".//*[@id='login_div']/form/div/div[2]/div/input"));
+		WebElement pass = driver.findElement(By.xpath(".//*[@id='login_div']/form/div/div[3]/div/input"));
+		name.clear();
+		pass.clear();
+		name.sendKeys("13457718147");
+		pass.sendKeys("123456");
+		WebElement submit = driver.findElement(By.xpath(".//*[@id='login_div']/form/div/div[4]/button"));
+		submit.click();
+		Thread.sleep(2000);
+		
+	}
+	
+	public void xzt() throws Exception{
+		WebElement nav = driver.findElement(By.xpath(".//*[@id='side-menu']/li[2]/a"));
+		nav.click();
+		Thread.sleep(1000);
+		for (int num = 0; num < 5; num++) {
+			WebElement xzt = driver.findElement(By.xpath(".//*[@id='side-menu']/li[2]/ul/li[3]/a"));
+			xzt.click();
+			Thread.sleep(1000);
+			
+			driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='content-main']/iframe[2]")));
+			WebElement tjtm = driver.findElement(By.xpath(".//*[@id='top_act']/div[1]/a"));
+			tjtm.click();
+			Thread.sleep(1000);
+			
+			((JavascriptExecutor) driver).executeScript("alert("+num+")");
+			Thread.sleep(2000);
+			driver.switchTo().alert().accept();
+			
+			driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='div_form']/form/div[3]/div/div/div[2]/iframe")));
+			WebElement tmnr = driver.findElement(By.xpath("/html/body"));
+			tmnr.sendKeys("	题目内容"+time1);
+			driver.switchTo().parentFrame();
+			Thread.sleep(1000);
+			
+			WebElement tjxx = driver.findElement(By.xpath("//*[@id='div_form']/form/div[5]/div/button"));
+			int mm = random.nextInt(4)+2;
+			for (int i = 0; i < mm; i++) {
+				tjxx.click();
+			}
+			List<WebElement> options = driver.findElements(By.xpath(".//*[@class='each_option row']"));
+			int ran = random.nextInt(mm);
+			for (int i = 0; i < options.size(); i++) {
+				WebElement optionname = options.get(i).findElement(By.xpath("./div[1]/input"));
+				WebElement optionlable = options.get(i).findElement(By.xpath("./div[2]/label/input[1]"));
+				if (i == ran) {
+					optionlable.click();
+					optionname.sendKeys("第"+i+"个选项内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"+"-"+"正确");
+				} else {
+					optionname.sendKeys("第"+i+"个选项内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容"+"-"+"错误");
+				}
+			}
+			Thread.sleep(2000);
+			
+			driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='div_form']/form/div[6]/div/div/div[2]/iframe")));
+			WebElement clnr = driver.findElement(By.xpath("/html/body"));
+			int nn = random.nextInt(3);
+			if (nn == 2) {
+				clnr.sendKeys("这里是材料内容"+time1);
+			}
+			driver.switchTo().parentFrame();
+			
+			driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='div_form']/form/div[7]/div/div/div[2]/iframe")));
+			WebElement wzdp = driver.findElement(By.xpath("/html/body"));
+			wzdp.sendKeys("文字点评"+time1);
+			driver.switchTo().parentFrame();
+			
+			int s = random.nextInt(4)+1;
+			Select tx = new Select(driver.findElement(By.xpath("//*[@id='div_form']/form/div[8]/div/select")));
+			tx.selectByIndex(s);
+			
+			WebElement syjd = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[9]/div/div/ul/li/input"));
+			syjd.click();
+			List<WebElement> s1 = driver.findElements(By.xpath(".//*[@id='div_form']/form/div[9]/div/div/div/ul/li"));
+			s1.get(1).click();
+			
+			WebElement kslx = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[10]/div/div/ul/li/input"));
+			kslx.click();
+			List<WebElement> s2 = driver.findElements(By.xpath(".//*[@id='div_form']/form/div[10]/div/div/div/ul/li"));
+			s2.get(1).click();
+			
+			WebElement nd = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[11]/div/div/ul/li/input"));
+			nd.click();
+			List<WebElement> s3 = driver.findElements(By.xpath(".//*[@id='div_form']/form/div[11]/div/div/div/ul/li"));
+			s3.get(1).click();
+			
+			WebElement zt = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[12]/div/label[1]/input"));
+			zt.click();
+			
+			Thread.sleep(200);
+			WebElement save = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[13]/div/button"));
+			save.click();
+			
+			driver.switchTo().parentFrame();
+		}
+	}
+	
+	public void banner() throws Exception{
+		WebElement nav = driver.findElement(By.xpath(".//*[@id='side-menu']/li[2]/a"));
+		nav.click();
+		Thread.sleep(1000);
+		WebElement banner = driver.findElement(By.xpath(".//*[@id='side-menu']/li[2]/ul/li[4]/a"));
+		banner.click();
+		Thread.sleep(1000);
+		driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='content-main']/iframe[2]")));
+		WebElement tjbanner = driver.findElement(By.xpath(".//*[@id='top_act']/div[1]/a"));
+		tjbanner.click();
+		Thread.sleep(2000);
+		
+		WebElement bannerName = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[3]/div/input"));
+		WebElement bannerOrder = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[4]/div/input"));
+		WebElement bannerUrl = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[6]/div/input"));
+		WebElement bannerImg = driver.findElement(By.xpath(".//*[@id='div_form']/form/div[5]/div[2]/div[2]/label"));
+		bannerName.clear();
+		bannerOrder.clear();
+		bannerUrl.clear();
+		bannerName.sendKeys("");
+		bannerOrder.sendKeys("");
+		bannerUrl.sendKeys("");
+		bannerImg.click();
+		Runtime.getRuntime().exec("c:/lsq/sltk.exe");
+		Thread.sleep(8000);
+		
+	}
+	
+	public void dtjx() throws Exception{
+		WebElement nav = driver.findElement(By.xpath(".//*[@id='side-menu']/li[2]/a"));
+		nav.click();
+		Thread.sleep(1000);
+		for (int g = 0; g < 5; g++) {
+			WebElement dtjx = driver.findElement(By.xpath(".//*[@id='side-menu']/li[2]/ul/li[1]/a"));
+			dtjx.click();
+			
+			Thread.sleep(1000);
+			driver.switchTo().frame(driver.findElement(By.xpath(".//*[@id='content-main']/iframe[2]")));
+			WebElement tjdtjx = driver.findElement(By.xpath(".//*[@id='top_act']/div/div/div/div/div[1]/a"));
+			tjdtjx.click();
+			Thread.sleep(2000);
+			
+			WebElement tjcl = driver.findElement(By.xpath(".//*[@id='div_form']/div/div/div/div[1]/form/div[1]/div/a"));
+			for (int i = 0; i < 6; i++) {
+				tjcl.click();
+				Thread.sleep(100);
+			}
+			List<WebElement> clnum = driver.findElements(By.xpath(".//*[@id='div_form']/div/div/div/div[1]/form/div[1]/div/ul/li"));
+			int num = random.nextInt(clnum.size()-1)+1;
+			for (int i = 0; i < clnum.size(); i++) {
+				WebElement clbt = clnum.get(i).findElement(By.xpath("./div[1]/div/input"));
+				clbt.sendKeys("材料"+i);
+				WebElement clxz = clnum.get(i).findElement(By.xpath("./div[1]/input"));
+				if (i == num) {
+					clxz.click();
+				}
+				driver.switchTo().frame(clnum.get(i).findElement(By.xpath("./div[2]/div/div[2]/iframe")));
+				WebElement clnr = driver.findElement(By.xpath("/html/body"));
+				clnr.sendKeys("材料内容");
+				driver.switchTo().parentFrame();
+			}
+			
+			driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='div_form']/div/div/div/div[1]/form/div[2]/div/div/div[2]/iframe")));
+			WebElement tmnr = driver.findElement(By.xpath("/html/body"));
+			tmnr.sendKeys("题目内容");
+			driver.switchTo().parentFrame();
+			
+			WebElement yjyd = driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[3]/div/textarea"));
+			yjyd.sendKeys("阅卷要点");
+			Thread.sleep(1000);
+			
+			List<WebElement> xyda = driver.findElements(By.xpath("/html/body/div/div/div/div/div[1]/form/div[4]/div/a"));
+			int i1 = random.nextInt(1);
+			if (i1 == 0) {
+				xyda.get(0).click();
+				WebElement imgfile = driver.findElement(By.xpath("//*[@id='picker']/div[2]/label"));
+				imgfile.click();
+				Runtime.getRuntime().exec("c:/lsq/sltk.exe");
+				Thread.sleep(4000);
+			} else {
+				xyda.get(1).click();
+				driver.switchTo().frame(driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[6]/div/div/div[2]/iframe")));
+				WebElement textda = driver.findElement(By.xpath("/html/body"));
+				textda.sendKeys("文字答案");
+				driver.switchTo().parentFrame();
+			}
+			Thread.sleep(3000);
+			WebElement txgl = driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[7]/div/div/ul"));
+			txgl.click();
+			Thread.sleep(1000);
+			List<WebElement> txnr = driver.findElements(By.xpath("/html/body/div/div/div/div/div[1]/form/div[7]/div/div/div/ul/li"));
+			int i2 = random.nextInt(3);
+			txnr.get(i2).click();
+			Thread.sleep(3000);
+			WebElement syjd = driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[8]/div/div/ul"));
+			syjd.click();
+			Thread.sleep(1000);
+			List<WebElement> syjdnr = driver.findElements(By.xpath("/html/body/div/div/div/div/div[1]/form/div[8]/div/div/div/ul/li"));
+			int i3 = random.nextInt(2);
+			syjdnr.get(i3).click();
+			Thread.sleep(3000);
+			WebElement kslx = driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[9]/div/div/ul"));
+			kslx.click();
+			Thread.sleep(1000);
+			List<WebElement> kslxnr = driver.findElements(By.xpath("/html/body/div/div/div/div/div[1]/form/div[9]/div/div/div/ul/li"));
+			int i4 = random.nextInt(1);
+			kslxnr.get(i4).click();
+			Thread.sleep(3000);
+			WebElement nd = driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[10]/div/div/ul"));
+			nd.click();
+			Thread.sleep(1000);
+			List<WebElement> ndnr = driver.findElements(By.xpath("/html/body/div/div/div/div/div[1]/form/div[10]/div/div/div/ul/li"));
+			int i5 = random.nextInt(2);
+			ndnr.get(i5).click();
+			Thread.sleep(3000);
+			
+			driver.switchTo().frame(driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[11]/div/div/div[2]/iframe")));
+			WebElement wzdp = driver.findElement(By.xpath("/html/body"));
+			wzdp.sendKeys("文字点评");
+			driver.switchTo().parentFrame();
+			
+			Select dpfs = new Select(driver.findElement(By.xpath("//*[@id='comment_score']")));
+			List<WebElement> fsnum = dpfs.getOptions();
+			int fs = random.nextInt(fsnum.size());
+			dpfs.selectByIndex(fs);
+			
+			WebElement save = driver.findElement(By.xpath("/html/body/div/div/div/div/div[1]/form/div[17]/div/a[1]"));
+			save.click();
+			Thread.sleep(5000);
+			driver.switchTo().parentFrame();
+		}
+	}
+}
